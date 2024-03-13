@@ -1,0 +1,58 @@
+diagram:
+  fill: "snow"
+  rows: 10
+  columns: 10
+  gridLines: True
+  gridPaddingInner: .25
+  groupPadding: .75
+  
+headings: &headings
+  text: |
+      #Netowrk Topology 1
+      
+      ## raxing
+
+colors: &colors
+  color: "white"
+  fill: "#28738A"
+  
+cisco: &cisco
+  stroke: "none"
+  color: "black"
+  iconFill: "darkslategrey"
+  iconStroke: "lightgrey"
+  iconStrokeWidth: .25
+  iconFamily: "cisco"
+  fill: "none"
+  preserveWhite: "true"
+  # h: 2  
+  # w: 2
+  #textLocation: "center"
+  
+cloud: &cloud
+  <<: *cisco
+  iconStroke: black
+  iconStrokeWidth: 2
+  
+wwrt001: &wwrt001 {<<: *cisco, icon: "router"}
+dssw001: &dssw001 {<<: *cisco, x: "+1", y: "+1", icon: "nexus5000"}
+
+icons:
+  switch: {<<: *cisco, x: 3, y: 3, icon: "layer3switch"}
+  switch2: {<<: *cisco, x: "+2", y: 3, icon: "workgroupswitch"}
+  gateway1: {<<: *cisco, x: 2, y: 6, icon: "router"}
+  gateway2: {<<: *cisco, x: "+2", icon: "router"}
+
+
+connection: &connection
+  color: "black"
+  stroke: "blue"
+  # strokeDashArray: "5,5"
+  
+connections:
+  - { <<: *connection, endpoints: ["switch:lable 1 here", "gateway1:label 2 here"],stroke: "blue", strokeDashArray:"55,55" }
+  - { <<: *connection, endpoints: ["switch:label 1 here", "gateway2:label 2 here"] }
+
+
+notes:
+  headings: {<<: *colors, <<: *headings, x: 2, y: 9, w: 6, h: 1, xAlign: center, yAlign: center, }
